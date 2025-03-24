@@ -19,19 +19,21 @@ import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_T
 
 import javax.annotation.PostConstruct;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Default;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 
-import java.util.Optional;
+import java.util.*;
 
 @Model(adaptables = Resource.class)
 public class HelloWorldModel {
@@ -55,8 +57,8 @@ public class HelloWorldModel {
                 .map(Page::getPath).orElse("");
 
         message = "Hello World!\n"
-            + "Resource type is: " + resourceType + "\n"
-            + "Current page is:  " + currentPagePath + "\n";
+                + "Resource type is: " + resourceType + "\n"
+                + "Current page is:  " + currentPagePath + "\n";
     }
 
     public String getMessage() {
